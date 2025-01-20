@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio</title>
+    <style>
+        /* Add basic styles */
+        .filter-item button {
+            cursor: pointer;
+            padding: 10px 20px;
+            border: none;
+            background-color: #f0f0f0;
+            margin-right: 10px;
+        }
+
+        .filter-item button.active {
+            background-color: #007bff;
+            color: #fff;
+        }
+
+        .project-item {
+            display: none;
+        }
+
+        .project-item.active {
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <article class="portfolio" data-page="portfolio">
+
+        <header>
+            <h2 class="h2 article-title">Portfolio</h2>
+        </header>
+
+        <section class="projects">
+
+            <!-- Filter Buttons -->
+            <ul class="filter-list">
+                <li class="filter-item">
+                    <button class="active" data-filter="all">All</button>
+                </li>
+                <li class="filter-item">
+                    <button data-filter="GitHub">GitHub</button>
+                </li>
+                <li class="filter-item">
+                    <button data-filter="behance">Behance</button>
+                </li>
+                <li class="filter-item">
+                    <button data-filter="web development">Web Development</button>
+                </li>
+            </ul>
+
+            <!-- Project List -->
+            <ul class="project-list">
+
+                <li class="project-item active" data-category="web development">
+                    <a href="#">
+                        <figure class="project-img">
+                            <img src="./assets/images/project-1.jpg" alt="finance" loading="lazy">
+                        </figure>
+                        <h3 class="project-title">Finance</h3>
+                        <p class="project-category">Web Development</p>
+                    </a>
+                </li>
+
+                <li class="project-item active" data-category="web development">
+                    <a href="#">
+                        <figure class="project-img">
+                            <img src="./assets/images/project-2.png" alt="orizon" loading="lazy">
+                        </figure>
+                        <h3 class="project-title">Orizon</h3>
+                        <p class="project-category">Web Development</p>
+                    </a>
+                </li>
+
+                <li class="project-item" data-category="behance">
+                    <a href="https://www.behance.net/avinashpal2" target="_blank">
+                        <figure class="project-img">
+                            <img src="./assets/images/project-4.png" alt="behance" loading="lazy">
+                        </figure>
+                        <h3 class="project-title">Behance</h3>
+                        <p class="project-category">Behance</p>
+                    </a>
+                </li>
+
+                <li class="project-item" data-category="GitHub">
+                    <a href="https://github.com" target="_blank">
+                        <figure class="project-img">
+                            <img src="./assets/images/git 01.png" alt="GitHub" loading="lazy">
+                        </figure>
+                        <h3 class="project-title">GitHub</h3>
+                        <p class="project-category">GitHub</p>
+                    </a>
+                </li>
+
+                <li class="project-item" data-category="web development">
+                    <a href="#">
+                        <figure class="project-img">
+                            <img src="./assets/images/project-7.png" alt="summary" loading="lazy">
+                        </figure>
+                        <h3 class="project-title">Summary</h3>
+                        <p class="project-category">Web Development</p>
+                    </a>
+                </li>
+
+                <li class="project-item" data-category="web development">
+                    <a href="#">
+                        <figure class="project-img">
+                            <img src="./assets/images/project-9.png" alt="arrival" loading="lazy">
+                        </figure>
+                        <h3 class="project-title">Arrival</h3>
+                        <p class="project-category">Web Development</p>
+                    </a>
+                </li>
+
+            </ul>
+
+        </section>
+
+    </article>
+
+    <script>
+        // JavaScript for Filter Functionality
+        document.querySelectorAll('[data-filter]').forEach(button => {
+            button.addEventListener('click', () => {
+                const filter = button.getAttribute('data-filter');
+
+                // Remove 'active' class from all buttons
+                document.querySelectorAll('[data-filter]').forEach(btn => btn.classList.remove('active'));
+                // Add 'active' class to clicked button
+                button.classList.add('active');
+
+                // Filter project items
+                document.querySelectorAll('.project-item').forEach(item => {
+                    const category = item.getAttribute('data-category');
+                    if (filter === 'all' || category === filter) {
+                        item.classList.add('active');
+                    } else {
+                        item.classList.remove('active');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>
